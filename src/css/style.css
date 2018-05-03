@@ -1,0 +1,70 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    color: #000;
+    background-color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+/** HEADER **/
+#header-nav {
+    background-color: #fff;
+    border-radius: 0;
+    border: 0;
+}
+
+#logo-img {
+    background: url('../img/logo.png') no-repeat;
+    width: 250px;
+    height: 60px;
+    margin: 12px 15px 10px 0;
+}
+
+#ulistItems {
+    margin-top: 10px;
+}
+
+#ulistItems a {
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+#ulistItems a:hover {
+    background: #E7E7E7;
+}
+
+#searchBox {
+    width: 800px;
+    background-position: center;
+}
+
+.searchEvBox {
+    width: 500px;
+    background-position: center;
+}
+
+#btnText {
+    font-weight: bold;
+    font-size: 14px;
+    height: 45px;
+    /*background-position: center;*/
+    text-align: center;
+}
+
+#ulIdMembrane {
+    width: 500px;
+    background-position: center;
+}
+
+/* END HEADER */
+
+/* main-content */
+.content {
+    min-height: 80%;
+}
+
+/* END main-content*/
