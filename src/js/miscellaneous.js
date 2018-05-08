@@ -116,6 +116,125 @@ var isExist = function (element, templistOfModel) {
     return false;
 };
 
+// split PR_ from protein identifier
+var splitPRFromProtein = function (tempMemModelID) {
+    var indexOfPR;
+    if (tempMemModelID[9] == "") {
+        indexOfPR = tempMemModelID[16].search("PR_");
+        return tempMemModelID[16].slice(indexOfPR + 3, tempMemModelID[16].length);
+    }
+    else {
+        indexOfPR = tempMemModelID[9].search("PR_");
+        return tempMemModelID[9].slice(indexOfPR + 3, tempMemModelID[9].length);
+    }
+};
+
+// split PR_ from protein identifier
+var proteinOrMedPrID = function (membraneModelID, PID) {
+    for (var i = 0; i < membraneModelID.length; i++) {
+        if (membraneModelID[i][9] == "") {
+            var indexOfPR = membraneModelID[i][16].search("PR_"),
+                medProteinID = membraneModelID[i][16].slice(indexOfPR + 3, membraneModelID[i][16].length);
+
+            PID.push(medProteinID); // Mediator PROTEIN id
+        }
+        else {
+            var indexOfPR = membraneModelID[i][9].search("PR_"),
+                medProteinID = membraneModelID[i][9].slice(indexOfPR + 3, membraneModelID[i][9].length);
+
+            PID.push(medProteinID); // Mediator PROTEIN id
+        }
+    }
+};
+
+// process EBI similarity matrix
+var similarityMatrixEBI = function (identityMatrix, PID, draggedMedPrID, membraneModelObj) {
+    // console.log("Identity Matrix: ", identityMatrix);
+
+    var indexOfColon = identityMatrix.search("1:"), m, n, i, j;
+
+    // console.log("index1stBar: ", identityMatrix.slice(indexOfColon - 1, identityMatrix.length));
+    identityMatrix = identityMatrix.slice(indexOfColon - 1, identityMatrix.length);
+
+    // console.log("New Identity Matrix: ", identityMatrix);
+
+    var matrixArray = identityMatrix.match(/[(\w\:)*\d\.]+/gi),
+        proteinIndex = [],
+        twoDMatrix = [];
+
+    // console.log("matrixArray: ", matrixArray);
+
+    for (i = 0; i < matrixArray.length; i = i + PID.length + 3) // +3 for digit:, PID, and Genes and Species
+        matrixArray.splice(i, 1);
+
+    for (i = 0; i < matrixArray.length; i = i + PID.length + 2) // +2 for PID and Genes and Species
+        matrixArray.splice(i, 1);
+
+    for (i = 1; i < matrixArray.length; i = i + PID.length + 1) // +1 for PID
+        matrixArray.splice(i, 1);
+
+    // console.log("matrixArray: ", matrixArray);
+
+    for (i = 0; i < matrixArray.length; i++) {
+        if (matrixArray[i].charAt(0).match(/[A-Za-z]/gi)) {
+            proteinIndex.push([matrixArray[i], i]);
+        }
+    }
+
+    // console.log("proteinIndex: ", proteinIndex);
+
+    // 1D to 2D array
+    while (matrixArray.length) {
+        matrixArray.splice(0, 1); // remove protein ID
+        twoDMatrix.push(matrixArray.splice(0, proteinIndex.length));
+    }
+
+    for (i = 0; i < twoDMatrix.length; i++) {
+        for (j = 0; j < twoDMatrix[i].length; j++) {
+            twoDMatrix[i][j] = parseFloat(twoDMatrix[i][j]);
+        }
+    }
+
+    // console.log("twoDMatrix: ", twoDMatrix);
+
+    var similarityOBJ = [];
+    for (i = 0; i < twoDMatrix.length; i++) {
+        for (j = 0; j < twoDMatrix.length; j++) {
+            if (i == j || j < i) continue;
+
+            similarityOBJ.push({
+                "PID1": proteinIndex[i][0],
+                "PID2": proteinIndex[j][0],
+                "similarity": twoDMatrix[i][j]
+            })
+        }
+    }
+
+    // length is empty when 100% matching
+    // appended a 0 bit after its protein id and make a comparision
+    if (similarityOBJ.length != 0) {
+        for (m = 0; m < membraneModelObj.length; m++) {
+            for (n = 0; n < similarityOBJ.length; n++) {
+                if ((membraneModelObj[m].pid == similarityOBJ[n].PID1 &&
+                    draggedMedPrID == similarityOBJ[n].PID2) ||
+                    (membraneModelObj[m].pid == similarityOBJ[n].PID2 &&
+                        draggedMedPrID == similarityOBJ[n].PID1)) {
+                    membraneModelObj[m].similar = similarityOBJ[n].similarity;
+                }
+            }
+        }
+
+        // Descending sorting
+        membraneModelObj.sort(function (a, b) {
+            return b.similar - a.similar;
+        });
+    }
+
+    // console.log("AFTER membraneModelObj: ", membraneModelObj);
+
+    return similarityOBJ;
+};
+
 exports.parseModelName = parseModelName;
 exports.uniqueify = uniqueify;
 exports.uniqueifyEpithelial = uniqueifyEpithelial;
@@ -124,3 +243,6 @@ exports.showLoading = showLoading;
 exports.uniqueifyjsonModel = uniqueifyjsonModel;
 exports.isExist = isExist;
 exports.uniqueifyjsonFlux = uniqueifyjsonFlux;
+exports.splitPRFromProtein = splitPRFromProtein;
+exports.proteinOrMedPrID = proteinOrMedPrID;
+exports.similarityMatrixEBI = similarityMatrixEBI;
