@@ -32,7 +32,7 @@ This system will appear as a collapsible window when the user will click a model
 ### Accessibility
 The application is accessible by navigating::
 ```
-  https://dewancse.github.io/use-case-application/src/index.html
+  https://dewancse.github.io/epithelial-discovery-tool/src/index.html
 ```
 
 ### Programming Language
@@ -51,4 +51,4 @@ We will implement Unit testing and Functional testing to make sure the code is f
 MIT license!
 
 ### Acknowledgements
-This project is supported by the MedTech Centre of Research Excellence (MedTech CoRE) and the Auckland Bioengineering Institute.
+This project is supported by the MedTech Centre of Research Excellence (MedTech CoRE), the Aotearoa Foundation, and the Auckland Bioengineering Institute.

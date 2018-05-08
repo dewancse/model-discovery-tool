@@ -100,7 +100,7 @@ var usecase = (function (global) {
 
     // DOCUMENTATION: load documentation from github
     mainUtils.loadDocumentation = function () {
-        var uri = "https://github.com/dewancse/use-case-application";
+        var uri = "https://github.com/dewancse/epithelial-discovery-tool";
         $("#main-content").html("Documentation can be found at " +
             "<a href=" + uri + " + target=_blank>README.md in github</a>");
     };
@@ -109,9 +109,9 @@ var usecase = (function (global) {
     mainUtils.loadHomeHtml = function () {
         miscellaneous.showLoading("#main-content");
         ajaxUtils.sendGetRequest(
-            sparqlUtils.homeHtml,
-            function (homeHtmlContent) {
-                $("#main-content").html(homeHtmlContent);
+            sparqlUtils.usecaseHtml,
+            function (usecaseHtmlContent) {
+                $("#main-content").html(usecaseHtmlContent);
             },
             false);
     };
@@ -1626,98 +1626,6 @@ var usecase = (function (global) {
         console.log("AFTER WSDbfetchREST!");
 
         return;
-
-        // // apical or basolateral membrane
-        // var membraneModel = "<p id=membraneModelsID><b>" + membraneName + " model</b>";
-        //
-        // for (var i = 0; i < membraneModelObj.length; i++) {
-        //
-        //     var workspaceuri = sparqlUtils.myWorkspaneName + "/" + "rawfile" + "/" + "HEAD" + "/" + membraneModelID[i][0];
-        //
-        //     var label = document.createElement("label");
-        //     label.innerHTML = '<br><a href="' + workspaceuri + '" target="_blank" ' +
-        //         'data-toggle="tooltip" data-placement="right" ' +
-        //         'title="Protein name: ' + membraneModelObj[i].prname + '\n' +
-        //         'Protein uri: ' + membraneModelObj[i].protein + '\n' +
-        //         'Mediator name: ' + membraneModelID[i][14] + '\n' +
-        //         'Mediator uri: ' + membraneModelObj[i].medpr + '\n' +
-        //         // 'Similarity value: ' + membraneModelObj[i].similar + '\n' +
-        //         'Model entity: ' + membraneModelID[i][0] + '\n' +
-        //         'Model entity2: ' + membraneModelID[i][1] + '"' +
-        //         '>' + membraneModelID[i][14] + '</a></label>'; // membraneModelObj[i].prname
-        //
-        //     membraneModel += label.innerHTML;
-        // }
-        //
-        // if (membraneModel == "<p id=membraneModelsID><b>" + membraneName + " model</b>") {
-        //     membraneModel += "<br>Not Exist" + "<br>";
-        // }
-        //
-        // // alternative model
-        // var alternativeModel = "<p id=alternativeModelID><b>Alternative model of " + proteinText + "</b>";
-        // if (alternativeModelObj.length == 0) {
-        //     alternativeModel += "<br>Not Exist" + "<br>";
-        // }
-        // else {
-        //     for (var i = 0; i < alternativeModelObj.length; i++) {
-        //         var workspaceuri = alternativeModelObj[i].workspaceName +
-        //             "/" + "rawfile" + "/" + "HEAD" + "/" + alternativeModelObj[i].modelEntity;
-        //
-        //         var label = document.createElement("label");
-        //         label.innerHTML = '<br><input id="' + alternativeModelObj[i].modelEntity + '" ' +
-        //             'type="checkbox" value="' + alternativeModelObj[i].modelEntity + '">' +
-        //             '<a href="' + workspaceuri + '" target="_blank" ' +
-        //             'data-toggle="tooltip" data-placement="right" ' +
-        //             'title="Protein name: ' + alternativeModelObj[i].prname + '\n' +
-        //             'Protein uri: ' + alternativeModelObj[i].protein + '\n' +
-        //             'Model entity: ' + alternativeModelObj[i].modelEntity + '"' +
-        //             '>' + alternativeModelObj[i].prname + '</a></label>';
-        //
-        //         alternativeModel += label.innerHTML;
-        //     }
-        // }
-        //
-        // // related organ models (kidney, lungs, etc) in PMR
-        // var relatedOrganModel = "<p id=relatedOrganModelID><b>" + typeOfModel + " model in PMR</b>";
-        // if (relatedModelObj.length == 1) { // includes own protein name
-        //     relatedOrganModel += "<br>Not Exist" + "<br>";
-        // }
-        // else {
-        //     for (var i = 0; i < relatedModelObj.length; i++) {
-        //
-        //         if (proteinName == relatedModelObj[i].protein)
-        //             continue;
-        //
-        //         var workspaceuri = relatedModelObj[i].workspaceName +
-        //             "/" + "rawfile" + "/" + "HEAD" + "/" + relatedModelObj[i].modelEntity;
-        //
-        //         var label = document.createElement("label");
-        //         label.innerHTML = '<br><a href="' + workspaceuri + '" target="_blank" ' +
-        //             'data-toggle="tooltip" data-placement="right" ' +
-        //             'title="Protein name: ' + relatedModelObj[i].prname + '\n' +
-        //             'Protein uri: ' + relatedModelObj[i].protein + '\n' +
-        //             'Model entity: ' + relatedModelObj[i].modelEntity + '"' +
-        //             '>' + relatedModelObj[i].prname + '</a></label>';
-        //
-        //         relatedOrganModel += label.innerHTML;
-        //     }
-        // }
-        //
-        // // append message inside corresponding hiders
-        // for (var i = 0; i < $('.hiders').length; i++) {
-        //
-        //     if (cellmlModelEntity == $('.hiders')[i].id) {
-        //
-        //         $('.hiders')[i].innerHTML = msg2 + model + biological + species + gene + protein + compartment + location;
-        //
-        //         var msg3 = "<br><p><b>Recommendations/suggestions based on existing models in PMR<b><\p>";
-        //         $('.hiders')[i].innerHTML += msg3 + membraneModel + alternativeModel + relatedOrganModel;
-        //
-        //         break;
-        //     }
-        // }
-        //
-        // return;
     };
 
     // reinitialize variable for next miscellaneous.iteration
