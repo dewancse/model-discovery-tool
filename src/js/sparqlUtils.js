@@ -169,6 +169,20 @@ var partOfFMAUri = "http://identifiers.org/fma/FMA";
 
 var myWorkspaneName = "https://models.physiomeproject.org/workspace/267";
 
+var mediatorSPARQL = function (modelEntity) {
+    var query = "PREFIX semsim: <http://www.bhi.washington.edu/SemSim#>" +
+        "SELECT ?mediator " +
+        "WHERE { " +
+        "<" + modelEntity + "> semsim:isComputationalComponentFor ?model_prop. " +
+        "?model_prop semsim:physicalPropertyOf ?model_proc. " +
+        "?model_proc semsim:hasMediatorParticipant ?model_medparticipant. " +
+        "?model_medparticipant semsim:hasPhysicalEntityReference ?med_entity. " +
+        "?med_entity semsim:hasPhysicalDefinition ?mediator. " +
+        "}";
+
+    return query;
+}
+
 var makecotransporterSPARQL = function (membrane1, membrane2) {
     var query = "PREFIX semsim: <http://www.bhi.washington.edu/SemSim#>" +
         "PREFIX ro: <http://www.obofoundry.org/ro/ro.owl#>" +
@@ -349,3 +363,4 @@ exports.endpoint = endpoint;
 exports.ebiOntoEndpoint = ebiOntoEndpoint;
 exports.abiOntoEndpoint = abiOntoEndpoint;
 exports.epithelialcellID = epithelialcellID;
+exports.mediatorSPARQL = mediatorSPARQL;

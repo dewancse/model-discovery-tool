@@ -136,6 +136,124 @@ var usecase = (function (global) {
         }
     });
 
+    // // MODEL DISCOVERY: SPARQL queries to retrieve search results from PMR
+    // mainUtils.discoverModels = function (jsonModel) {
+    //
+    //     if (jsonModel.results.bindings.length == 0) {
+    //         mainUtils.showDiscoverModels();
+    //         return;
+    //     }
+    //
+    //     var model = miscellaneous.parseModelName(jsonModel.results.bindings[discoverIndex].Model_entity.value);
+    //     model = model + "#" + model.slice(0, model.indexOf("."));
+    //
+    //     var query = "SELECT ?Protein WHERE { " + "<" + model + "> <http://www.obofoundry.org/ro/ro.owl#modelOf> ?Protein. }";
+    //
+    //     ajaxUtils.sendPostRequest(
+    //         sparqlUtils.endpoint,
+    //         query,
+    //         function (jsonProteinUri) {
+    //
+    //             if (jsonProteinUri.results.bindings.length == 0) {
+    //                 discoverIndex++;
+    //
+    //                 if (discoverIndex != jsonModel.results.bindings.length) {
+    //                     mainUtils.discoverModels(jsonModel);
+    //                 }
+    //             }
+    //
+    //             // pig SGLT2 (PR_P31636) does not exist in PR ontology, assign mouse species instead
+    //             // PR_P31636 is added in PR ontology
+    //             var pr_uri, endpointproteinOLS;
+    //             if (jsonProteinUri.results.bindings.length == 0) {
+    //                 // pr_uri = undefined;
+    //                 endpointproteinOLS = sparqlUtils.abiOntoEndpoint + "/pr";
+    //             }
+    //             else {
+    //                 pr_uri = jsonProteinUri.results.bindings[0].Protein.value;
+    //
+    //                 if (pr_uri == sparqlUtils.epithelialcellID)
+    //                     endpointproteinOLS = sparqlUtils.abiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
+    //                 else
+    //                     endpointproteinOLS = sparqlUtils.abiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
+    //
+    //                 // dropdown list
+    //                 listOfProteinURIs.push(pr_uri);
+    //             }
+    //
+    //             ajaxUtils.sendGetRequest(
+    //                 endpointproteinOLS,
+    //                 function (jsonProtein) {
+    //
+    //                     var endpointgeneOLS;
+    //                     if (jsonProtein._embedded.terms[0]._links.has_gene_template != undefined)
+    //                         endpointgeneOLS = jsonProtein._embedded.terms[0]._links.has_gene_template.href;
+    //                     else
+    //                         endpointgeneOLS = sparqlUtils.abiOntoEndpoint + "/pr";
+    //
+    //                     ajaxUtils.sendGetRequest(
+    //                         endpointgeneOLS,
+    //                         function (jsonGene) {
+    //
+    //                             var endpointspeciesOLS;
+    //                             if (jsonProtein._embedded.terms[0]._links.only_in_taxon != undefined)
+    //                                 endpointspeciesOLS = jsonProtein._embedded.terms[0]._links.only_in_taxon.href;
+    //                             else
+    //                                 endpointspeciesOLS = sparqlUtils.abiOntoEndpoint + "/pr";
+    //
+    //                             ajaxUtils.sendGetRequest(
+    //                                 endpointspeciesOLS,
+    //                                 function (jsonSpecies) {
+    //
+    //                                     // model and biological meaning
+    //                                     modelEntity.push(jsonModel.results.bindings[discoverIndex].Model_entity.value);
+    //                                     biologicalMeaning.push(jsonModel.results.bindings[discoverIndex].Biological_meaning.value);
+    //
+    //                                     // species
+    //                                     if (jsonSpecies._embedded == undefined)
+    //                                         speciesList.push("Numerical model"); // Or undefined
+    //                                     else
+    //                                         speciesList.push(jsonSpecies._embedded.terms[0].label);
+    //
+    //                                     // gene
+    //                                     if (jsonGene._embedded == undefined)
+    //                                         geneList.push("Numerical model"); // Or undefined
+    //                                     else {
+    //                                         var geneName = jsonGene._embedded.terms[0].label;
+    //                                         geneName = geneName.slice(0, geneName.indexOf("(") - 1);
+    //                                         geneList.push(geneName); // Or undefined
+    //                                     }
+    //
+    //                                     // protein
+    //                                     if (jsonProtein._embedded == undefined)
+    //                                         proteinList.push("Numerical model"); // Or undefined
+    //                                     else {
+    //                                         var proteinName = jsonProtein._embedded.terms[0].label;
+    //                                         proteinName = proteinName.slice(0, proteinName.indexOf("(") - 1);
+    //                                         proteinList.push(proteinName);
+    //                                     }
+    //
+    //                                     head = ["Model_entity (click to expand)", "Biological_meaning", "Species", "Gene", "Protein"];
+    //
+    //                                     mainUtils.showDiscoverModels();
+    //
+    //                                     discoverIndex++; // increment index of modelEntity
+    //
+    //                                     if (discoverIndex == jsonModel.results.bindings.length) {
+    //                                         return;
+    //                                     }
+    //
+    //                                     mainUtils.discoverModels(jsonModel); // callback
+    //                                 },
+    //                                 true);
+    //                         },
+    //                         true);
+    //                 },
+    //                 true);
+    //         },
+    //         true);
+    // };
+
     // MODEL DISCOVERY: SPARQL queries to retrieve search results from PMR
     mainUtils.discoverModels = function (jsonModel) {
 
@@ -181,69 +299,98 @@ var usecase = (function (global) {
                     listOfProteinURIs.push(pr_uri);
                 }
 
-                ajaxUtils.sendGetRequest(
-                    endpointproteinOLS,
-                    function (jsonProtein) {
+                var query = sparqlUtils.mediatorSPARQL(jsonModel.results.bindings[discoverIndex].Model_entity.value);
 
-                        var endpointgeneOLS;
-                        if (jsonProtein._embedded.terms[0]._links.has_gene_template != undefined)
-                            endpointgeneOLS = jsonProtein._embedded.terms[0]._links.has_gene_template.href;
-                        else
-                            endpointgeneOLS = sparqlUtils.abiOntoEndpoint + "/pr";
+                ajaxUtils.sendPostRequest(
+                    sparqlUtils.endpoint,
+                    query,
+                    function (jsonepithelialobj) {
+
+                        // epithelial cell
+                        if (pr_uri == sparqlUtils.epithelialcellID) {
+                            for (var i = 0; i < jsonepithelialobj.results.bindings.length; i++) {
+                                var temp = jsonepithelialobj.results.bindings[i].mediator.value;
+
+                                if (temp.indexOf(sparqlUtils.partOfProteinUri) != -1) {
+                                    var mediatorURI = jsonepithelialobj.results.bindings[i].mediator.value;
+                                    endpointproteinOLS = sparqlUtils.abiOntoEndpoint + "/pr/terms?iri=" + mediatorURI;
+                                    break;
+                                }
+                            }
+                        }
 
                         ajaxUtils.sendGetRequest(
-                            endpointgeneOLS,
-                            function (jsonGene) {
+                            endpointproteinOLS,
+                            function (jsonProtein) {
 
-                                var endpointspeciesOLS;
-                                if (jsonProtein._embedded.terms[0]._links.only_in_taxon != undefined)
-                                    endpointspeciesOLS = jsonProtein._embedded.terms[0]._links.only_in_taxon.href;
+                                var endpointgeneOLS;
+                                if (jsonProtein._embedded.terms[0]._links.has_gene_template != undefined)
+                                    endpointgeneOLS = jsonProtein._embedded.terms[0]._links.has_gene_template.href;
                                 else
-                                    endpointspeciesOLS = sparqlUtils.abiOntoEndpoint + "/pr";
+                                    endpointgeneOLS = sparqlUtils.abiOntoEndpoint + "/pr";
 
                                 ajaxUtils.sendGetRequest(
-                                    endpointspeciesOLS,
-                                    function (jsonSpecies) {
+                                    endpointgeneOLS,
+                                    function (jsonGene) {
 
-                                        // model and biological meaning
-                                        modelEntity.push(jsonModel.results.bindings[discoverIndex].Model_entity.value);
-                                        biologicalMeaning.push(jsonModel.results.bindings[discoverIndex].Biological_meaning.value);
-
-                                        // species
-                                        if (jsonSpecies._embedded == undefined)
-                                            speciesList.push("Numerical model"); // Or undefined
+                                        var endpointspeciesOLS;
+                                        if (jsonProtein._embedded.terms[0]._links.only_in_taxon != undefined)
+                                            endpointspeciesOLS = jsonProtein._embedded.terms[0]._links.only_in_taxon.href;
                                         else
-                                            speciesList.push(jsonSpecies._embedded.terms[0].label);
+                                            endpointspeciesOLS = sparqlUtils.abiOntoEndpoint + "/pr";
 
-                                        // gene
-                                        if (jsonGene._embedded == undefined)
-                                            geneList.push("Numerical model"); // Or undefined
-                                        else {
-                                            var geneName = jsonGene._embedded.terms[0].label;
-                                            geneName = geneName.slice(0, geneName.indexOf("(") - 1);
-                                            geneList.push(geneName); // Or undefined
-                                        }
+                                        ajaxUtils.sendGetRequest(
+                                            endpointspeciesOLS,
+                                            function (jsonSpecies) {
 
-                                        // protein
-                                        if (jsonProtein._embedded == undefined)
-                                            proteinList.push("Numerical model"); // Or undefined
-                                        else {
-                                            var proteinName = jsonProtein._embedded.terms[0].label;
-                                            proteinName = proteinName.slice(0, proteinName.indexOf("(") - 1);
-                                            proteinList.push(proteinName);
-                                        }
+                                                // model and biological meaning
+                                                modelEntity.push(jsonModel.results.bindings[discoverIndex].Model_entity.value);
+                                                biologicalMeaning.push(jsonModel.results.bindings[discoverIndex].Biological_meaning.value);
 
-                                        head = ["Model_entity (click to expand)", "Biological_meaning", "Species", "Gene", "Protein"];
+                                                // species
+                                                if (jsonSpecies._embedded == undefined)
+                                                    speciesList.push("Numerical model"); // Or undefined
+                                                else
+                                                    speciesList.push(jsonSpecies._embedded.terms[0].label);
 
-                                        mainUtils.showDiscoverModels();
+                                                // gene
+                                                if (jsonGene._embedded == undefined)
+                                                    geneList.push("Numerical model"); // Or undefined
+                                                else {
+                                                    var geneName = jsonGene._embedded.terms[0].label;
+                                                    geneName = geneName.slice(0, geneName.indexOf("(") - 1);
+                                                    geneList.push(geneName); // Or undefined
+                                                }
 
-                                        discoverIndex++; // increment index of modelEntity
+                                                // protein
+                                                if (jsonProtein._embedded == undefined)
+                                                    proteinList.push("Numerical model"); // Or undefined
+                                                else {
+                                                    var proteinName = jsonProtein._embedded.terms[0].label;
+                                                    proteinName = proteinName.slice(0, proteinName.indexOf("(") - 1);
+                                                    proteinList.push(proteinName);
+                                                }
 
-                                        if (discoverIndex == jsonModel.results.bindings.length) {
-                                            return;
-                                        }
+                                                head = ["Model_entity", "Biological_meaning", "Species", "Gene", "Protein"];
 
-                                        mainUtils.discoverModels(jsonModel); // callback
+                                                mainUtils.showDiscoverModels();
+
+                                                discoverIndex++; // increment index of modelEntity
+
+                                                if (discoverIndex == jsonModel.results.bindings.length) {
+
+                                                    listOfProteinURIs = listOfProteinURIs.filter(function (item, pos) {
+                                                        return listOfProteinURIs.indexOf(item) == pos;
+                                                    });
+
+                                                    // dropdown list
+                                                    filterByProtein();
+                                                    return;
+                                                }
+
+                                                mainUtils.discoverModels(jsonModel); // callback
+                                            },
+                                            true);
                                     },
                                     true);
                             },
