@@ -4,20 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Use Case Application</title>
+    <title>Model Discovery Application</title>
 
-    <link rel="stylesheet" href="../node_modules/mocha/mocha.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 
     <!--bringing in the dependencies-->
-    <script src="./libs/jquery.min.js"></script>
-    <script src="./libs/jquery-ui.js"></script>
-    <script src="./libs/bootstrap.min.js"></script>
-    <script src="./libs/d3.min.js"></script>
-    <script src="./libs/d3-selection-multi.v1.min.js" charset="utf-8"></script>
-    <script src="../node_modules/mocha/mocha.js"></script>
-    <script src="../node_modules/chai/chai.js"></script>
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery-ui.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/d3.min.js"></script>
+    <script src="libs/d3-selection-multi.v1.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -42,7 +39,7 @@
             <div id="collapsable-nav" class="collapse navbar-collapse">
                 <ul id="ulistItems" class="nav navbar-nav navbar-right">
                     <li id="listDocumentation">
-                        <a href="#useCase" onclick="$mainUtils.loadDocumentation();">DOCUMENTATION</a>
+                        <a href="#documentation" onclick="$mainUtils.loadDocumentation();">DOCUMENTATION</a>
                     </li>
                 </ul><!-- #nav-list -->
             </div><!-- .collapse .navbar-collapse -->
@@ -51,7 +48,30 @@
 </header>
 <hr/>
 
-<div id="main-content" class="container content"></div>
+<div id="main-content" class="container content">
+    <div class="container">
+        <div id="searchBox" class="container input-group">
+            <div class="input-group-btn">
+                <div class="btn-group" role="group">
+                    <div class="dropdown dropdown-lg">
+                        <button id="btnText" type="button" class="btn btn-default dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">Discover CellML Models
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <input id="searchTxt" name="searchTxt" value="" type="text" placeholder="Search Models"
+                   class="form-control input-lg" aria-label="...">
+        </div>
+        </br>
+
+        <hr/>
+
+        <div id="searchList" class="container"></div>
+    </div>
+</div>
 
 <!-- home scripts -->
-<script src="bundle.js"></script>
+<script src="index.js"></script>

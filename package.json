@@ -1,10 +1,10 @@
 {
-  "name": "use-case-application",
+  "name": "epithelial-modelling-platform",
   "version": "0.0.1",
   "description": "A web-based epithelial transport discovery, exploration and assembly tool",
-  "main": "./src/index.html",
+  "main": "server.js",
   "scripts": {
-    "build": "node ./src/js/server.js"
+    "start": "node server.js"
   },
   "authors": [
     "Dewan Sarwar <dsar941@aucklanduni.ac.nz>"
@@ -12,30 +12,26 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dewancse/use-case-application.git"
-  },
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.15.0",
-    "mocha": "^4.0.1",
-    "mocha-phantomjs": "^4.1.0"
+    "url": "https://github.com/dewancse/epithelial-modelling-platform.git"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "bootstrap": "^3.3.7",
     "cors-anywhere": "^0.4.0",
     "d3": "^4.11.0",
     "d3-selection-multi": "^1.0.1",
+    "express": "^4.16.3",
     "fs": "0.0.1-security",
     "http-proxy": "^1.16.2",
     "jquery": "^3.2.1",
     "jquery-ui": "^1.12.1",
+    "path": "^0.12.7",
     "proxy-from-env": "^1.0.0",
     "selenium-webdriver": "^3.6.0"
   },
   "keywords": [
-    "a",
-    "b",
-    "c",
-    "d"
+    "model",
+    "discovery",
+    "platform"
   ]
 }
