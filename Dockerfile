@@ -3,7 +3,7 @@ FROM node:carbon
 
 # this app listens on port 8080, but the container should launch on port 80
 # so it will respond to http://localhost:80 on your computer
-EXPOSE 80
+EXPOSE 8080
 
 # create directory /usr/src/app for app files with 'mkdir -p /usr/src/app'
 RUN mkdir -p /usr/src/app
