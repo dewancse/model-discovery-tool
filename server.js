@@ -24,6 +24,13 @@ app.get('/api', function (req, res, next) {
     res.status(200).send(data);
 });
 
+app.get('/server.html', function (req, res, next) {
+    var data = {
+        message: 'Hello World!'
+    };
+    res.status(200).send(data);
+});
+
 module.exports = app;
 
 app.listen(PORT, function () {

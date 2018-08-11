@@ -13,11 +13,10 @@ WORKDIR /usr/src/app
 COPY package.json package.json
 
 # run 'npm install' to install dependencies from that file
-# to keep it clean and small, run 'npm cache clean --force' after above
-RUN npm install && npm cache clean --force
+RUN npm install
 
 # copy in all files from current directory
 COPY . .
 
-# start container with command 'node start'
-CMD ["node", "start"]
+# start container with command 'npm start'
+CMD ["npm", "start"]
