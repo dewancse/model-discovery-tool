@@ -4,10 +4,10 @@ Model discovery tool is a web-based epithelial transport discovery, exploration 
 ### Installing MDT
 Please do the following steps to clone the EDT in your workspace:
 
-- git clone https://github.com/dewancse/model-discovery-tool.git
-- execute "npm install" to install packages in package.json
-- execute "npm start" to run server.js
-- navigate to http://127.0.0.1:8080/ to start index.html home page
+- `git clone https://github.com/dewancse/model-discovery-tool.git`
+- `npm install` to install packages
+- `npm start` to run server.js
+- Open `http://127.0.0.1:8080/` in the google chrome browser to start index.html home page
 
 ### MDT workflow
 
