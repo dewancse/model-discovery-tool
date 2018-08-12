@@ -18,7 +18,6 @@ var ModelDiscoveryPlatform = (function (global) {
         speciesList = [],
         geneList = [],
         proteinList = [],
-        listOfProteinURIs = [],
         head = [],
         discoverIndex = 0;
 
@@ -729,7 +728,7 @@ var ModelDiscoveryPlatform = (function (global) {
     };
 
     // MODEL DISCOVERY: enter search texts
-    $(document).on("keydown", function () {
+    $(document).on("keydown", function (event) {
         if (event.key == "Enter") {
 
             var uriOPB, uriCHEBI, keyValue;
@@ -760,7 +759,6 @@ var ModelDiscoveryPlatform = (function (global) {
             speciesList = [];
             geneList = [];
             proteinList = [];
-            listOfProteinURIs = [];
             head = [];
 
             discoverIndex = 0; // discoverIndex to index each Model_entity
@@ -831,9 +829,6 @@ var ModelDiscoveryPlatform = (function (global) {
                         endpointproteinOLS = ebiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
                     else
                         endpointproteinOLS = ebiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
-
-                    // dropdown list
-                    listOfProteinURIs.push(pr_uri);
                 }
 
                 var query = mediatorSPARQL(jsonModel.results.bindings[discoverIndex].Model_entity.value);
@@ -915,13 +910,6 @@ var ModelDiscoveryPlatform = (function (global) {
                                                 discoverIndex++; // increment index of modelEntity
 
                                                 if (discoverIndex == jsonModel.results.bindings.length) {
-
-                                                    listOfProteinURIs = listOfProteinURIs.filter(function (item, pos) {
-                                                        return listOfProteinURIs.indexOf(item) == pos;
-                                                    });
-
-                                                    // dropdown list
-                                                    filterByProtein();
                                                     return;
                                                 }
 

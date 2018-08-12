@@ -1,13 +1,13 @@
 ### Model Discovery Tool (MDT)
-Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend computational models for investigating their experimental or clinical hypotheses.
+Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest.
 
 ### Installing MDT
-Please do the following steps to clone the EDT in your workspace:
+Please do the following steps to install the MDT in your workspace:
 
 - `git clone https://github.com/dewancse/model-discovery-tool.git`
 - `npm install` to install packages
 - `npm start` to run server.js
-- Open `http://127.0.0.1:8080/` in the google chrome browser to start index.html home page
+- Open `http://127.0.0.1:8080/` in the browser to start index.html home page
 
 ### MDT workflow
 
