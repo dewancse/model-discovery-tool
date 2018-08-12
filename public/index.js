@@ -30,58 +30,58 @@ var ModelDiscoveryPlatform = (function (global) {
     // SPARQL Utils
     // var endpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search";
     var pmrEndpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search",
-        cors_api_url = "http://localhost:8080/",
-        // endpoint = cors_api_url + pmrEndpoint;
-        endpoint = pmrEndpoint;
+        cors_api_url = "https://cors-anywhere.herokuapp.com/",
+        endpoint = cors_api_url + pmrEndpoint;
+    //endpoint = pmrEndpoint;
 
-    var ebiOntoEndpoint = "https://www.ebi.ac.uk/ols/ontologies";
-    var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
+    var ebiOntoEndpoint = "https://www.ebi.ac.uk/ols/api/ontologies";
+    // var ebiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
 
     var organ = [
         {
             "key": [
                 {
-                    "key": "http://identifiers.org/fma/FMA:7203",
+                    "key": "http://purl.obolibrary.org/obo/FMA_7203",
                     "value": "kidney"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:84666",
+                    "key": "http://purl.obolibrary.org/obo/FMA_84666",
                     "value": "apical plasma membrane"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:70973",
+                    "key": "http://purl.obolibrary.org/obo/FMA_70973",
                     "value": "epithelial cell of proximal tubule"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:70981",
+                    "key": "http://purl.obolibrary.org/obo/FMA_70981",
                     "value": "epithelial cell of Distal tubule"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:17693",
+                    "key": "http://purl.obolibrary.org/obo/FMA_17693",
                     "value": "proximal convoluted tubule"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:17721",
+                    "key": "http://purl.obolibrary.org/obo/FMA_17721",
                     "value": "distal convoluted tubule"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:66836",
+                    "key": "http://purl.obolibrary.org/obo/FMA_66836",
                     "value": "portion of cytosol"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:84669",
+                    "key": "http://purl.obolibrary.org/obo/FMA_84669",
                     "value": "basolateralMembrane plasma membrane"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:17716",
+                    "key": "http://purl.obolibrary.org/obo/FMA_17716",
                     "value": "proximal straight tubule"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:17717",
+                    "key": "http://purl.obolibrary.org/obo/FMA_17717",
                     "value": "ascending limb of loop of Henle"
                 },
                 {
-                    "key": "http://identifiers.org/fma/FMA:17705",
+                    "key": "http://purl.obolibrary.org/obo/FMA_17705",
                     "value": "descending limb of loop of Henle"
                 },
                 {
@@ -122,27 +122,27 @@ var ModelDiscoveryPlatform = (function (global) {
         {
             "key1": "flux", "key2": "sodium",
             "opb": "<http://identifiers.org/opb/OPB_00593>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:29101>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_29101>"
         },
         {
             "key1": "flux", "key2": "hydrogen",
             "opb": "<http://identifiers.org/opb/OPB_00593>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:15378>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_15378>"
         },
         {
             "key1": "flux", "key2": "ammonium",
             "opb": "<http://identifiers.org/opb/OPB_00593>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:28938>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_28938>"
         },
         {
             "key1": "flux", "key2": "chloride",
             "opb": "<http://identifiers.org/opb/OPB_00593>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:17996>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_17996>"
         },
         {
             "key1": "flux", "key2": "potassium",
             "opb": "<http://identifiers.org/opb/OPB_00593>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:29103>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_29103>"
         },
         {
             "key1": "concentration", "key2": "",
@@ -151,46 +151,46 @@ var ModelDiscoveryPlatform = (function (global) {
         {
             "key1": "concentration", "key2": "sodium",
             "opb": "<http://identifiers.org/opb/OPB_00340>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:29101>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_29101>"
         },
         {
             "key1": "concentration", "key2": "hydrogen",
             "opb": "<http://identifiers.org/opb/OPB_00340>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:15378>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_15378>"
         },
         {
             "key1": "concentration", "key2": "ammonium",
             "opb": "<http://identifiers.org/opb/OPB_00340>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:28938>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_28938>"
         },
         {
             "key1": "concentration", "key2": "chloride",
             "opb": "<http://identifiers.org/opb/OPB_00340>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:17996>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_17996>"
         },
         {
             "key1": "concentration", "key2": "potassium",
             "opb": "<http://identifiers.org/opb/OPB_00340>",
-            "chebi": "<http://identifiers.org/chebi/CHEBI:29103>"
+            "chebi": "<http://purl.obolibrary.org/obo/CHEBI_29103>"
         }
     ];
 
     var epithelialcellID = "http://purl.obolibrary.org/obo/CL_0000066";
-    var apicalID = "http://identifiers.org/fma/FMA:84666";
-    var basolateralID = "http://identifiers.org/fma/FMA:84669";
+    var apicalID = "http://purl.obolibrary.org/obo/FMA_84666";
+    var basolateralID = "http://purl.obolibrary.org/obo/FMA_84669";
     var partOfProteinUri = "http://purl.obolibrary.org/obo/PR";
     var partOfCellUri = "http://purl.obolibrary.org/obo/CL";
-    var partOfGOUri = "http://identifiers.org/go/GO";
-    var partOfCHEBIUri = "http://identifiers.org/chebi/CHEBI";
+    var partOfGOUri = "http://purl.obolibrary.org/obo/GO";
+    var partOfCHEBIUri = "http://purl.obolibrary.org/obo/CHEBI";
 
-    var paracellularID = "http://identifiers.org/fma/FMA:67394";
-    var luminalID = "http://identifiers.org/fma/FMA:74550";
-    var cytosolID = "http://identifiers.org/fma/FMA:66836";
-    var interstitialID = "http://identifiers.org/fma/FMA:9673";
+    var paracellularID = "http://purl.obolibrary.org/obo/FMA_67394";
+    var luminalID = "http://purl.obolibrary.org/obo/FMA_74550";
+    var cytosolID = "http://purl.obolibrary.org/obo/FMA_66836";
+    var interstitialID = "http://purl.obolibrary.org/obo/FMA_9673";
     var Nachannel = "http://purl.obolibrary.org/obo/PR_000014527";
     var Clchannel = "http://purl.obolibrary.org/obo/PR_Q06393";
     var Kchannel = "http://purl.obolibrary.org/obo/PR_P15387";
-    var partOfFMAUri = "http://identifiers.org/fma/FMA";
+    var partOfFMAUri = "http://purl.obolibrary.org/obo/FMA";
 
     var myWorkspaneName = "https://models.physiomeproject.org/workspace/267";
 
@@ -669,7 +669,6 @@ var ModelDiscoveryPlatform = (function (global) {
     function handleResponse(request, responseHandler, isJsonResponse) {
 
         if ((request.readyState == 4) && (request.status == 200)) {
-
             // Default to isJsonResponse = true
             if (isJsonResponse == undefined) {
                 isJsonResponse = true;
@@ -717,7 +716,7 @@ var ModelDiscoveryPlatform = (function (global) {
             "\n" +
             "        <div id=\"searchList\" class=\"container\"></div>\n" +
             "    </div>\n" +
-            "</div>\n"
+            "</div>\n";
 
         $("#main-content").html(htmlContent);
     };
@@ -823,15 +822,15 @@ var ModelDiscoveryPlatform = (function (global) {
                 var pr_uri, endpointproteinOLS;
                 if (jsonProteinUri.results.bindings.length == 0) {
                     // pr_uri = undefined;
-                    endpointproteinOLS = abiOntoEndpoint + "/pr";
+                    endpointproteinOLS = ebiOntoEndpoint + "/pr";
                 }
                 else {
                     pr_uri = jsonProteinUri.results.bindings[0].Protein.value;
 
                     if (pr_uri == epithelialcellID)
-                        endpointproteinOLS = abiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
+                        endpointproteinOLS = ebiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
                     else
-                        endpointproteinOLS = abiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
+                        endpointproteinOLS = ebiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
 
                     // dropdown list
                     listOfProteinURIs.push(pr_uri);
@@ -851,7 +850,7 @@ var ModelDiscoveryPlatform = (function (global) {
 
                                 if (temp.indexOf(partOfProteinUri) != -1) {
                                     var mediatorURI = jsonepithelialobj.results.bindings[i].mediator.value;
-                                    endpointproteinOLS = abiOntoEndpoint + "/pr/terms?iri=" + mediatorURI;
+                                    endpointproteinOLS = ebiOntoEndpoint + "/pr/terms?iri=" + mediatorURI;
                                     break;
                                 }
                             }
@@ -865,7 +864,7 @@ var ModelDiscoveryPlatform = (function (global) {
                                 if (jsonProtein._embedded.terms[0]._links.has_gene_template != undefined)
                                     endpointgeneOLS = jsonProtein._embedded.terms[0]._links.has_gene_template.href;
                                 else
-                                    endpointgeneOLS = abiOntoEndpoint + "/pr";
+                                    endpointgeneOLS = ebiOntoEndpoint + "/pr";
 
                                 sendGetRequest(
                                     endpointgeneOLS,
@@ -875,7 +874,7 @@ var ModelDiscoveryPlatform = (function (global) {
                                         if (jsonProtein._embedded.terms[0]._links.only_in_taxon != undefined)
                                             endpointspeciesOLS = jsonProtein._embedded.terms[0]._links.only_in_taxon.href;
                                         else
-                                            endpointspeciesOLS = abiOntoEndpoint + "/pr";
+                                            endpointspeciesOLS = ebiOntoEndpoint + "/pr";
 
                                         sendGetRequest(
                                             endpointspeciesOLS,
@@ -972,12 +971,12 @@ var ModelDiscoveryPlatform = (function (global) {
                 var endpointprOLS;
                 if (proteinName != undefined) {
                     if (proteinName == epithelialcellID)
-                        endpointprOLS = abiOntoEndpoint + "/cl/terms?iri=" + proteinName;
+                        endpointprOLS = ebiOntoEndpoint + "/cl/terms?iri=" + proteinName;
                     else
-                        endpointprOLS = abiOntoEndpoint + "/pr/terms?iri=" + proteinName;
+                        endpointprOLS = ebiOntoEndpoint + "/pr/terms?iri=" + proteinName;
                 }
                 else
-                    endpointprOLS = abiOntoEndpoint + "/pr";
+                    endpointprOLS = ebiOntoEndpoint + "/pr";
 
                 sendGetRequest(
                     endpointprOLS,
@@ -985,7 +984,7 @@ var ModelDiscoveryPlatform = (function (global) {
 
                         var endpointgeneOLS;
                         if (jsonPr._embedded == undefined || jsonPr._embedded.terms[0]._links.has_gene_template == undefined)
-                            endpointgeneOLS = abiOntoEndpoint + "/pr";
+                            endpointgeneOLS = ebiOntoEndpoint + "/pr";
                         else
                             endpointgeneOLS = jsonPr._embedded.terms[0]._links.has_gene_template.href;
 
@@ -995,7 +994,7 @@ var ModelDiscoveryPlatform = (function (global) {
 
                                 var endpointspeciesOLS;
                                 if (jsonPr._embedded == undefined || jsonPr._embedded.terms[0]._links.only_in_taxon == undefined)
-                                    endpointspeciesOLS = abiOntoEndpoint + "/pr";
+                                    endpointspeciesOLS = ebiOntoEndpoint + "/pr";
                                 else
                                     endpointspeciesOLS = jsonPr._embedded.terms[0]._links.only_in_taxon.href;
 
@@ -1065,9 +1064,9 @@ var ModelDiscoveryPlatform = (function (global) {
         for (var i in compartment) {
 
             var fma_uri = compartment[i].Compartment.value;
-            fma_uri = "http://purl.org/sig/ont/fma/fma" + fma_uri.slice(fma_uri.indexOf("FMA:") + 4);
+            // fma_uri = "http://purl.org/sig/ont/fma/fma" + fma_uri.slice(fma_uri.indexOf("FMA:") + 4);
 
-            var endpointOLS = abiOntoEndpoint + "/fma/terms?iri=" + fma_uri;
+            var endpointOLS = ebiOntoEndpoint + "/fma/terms?iri=" + fma_uri;
 
             sendGetRequest(
                 endpointOLS,
@@ -1085,9 +1084,9 @@ var ModelDiscoveryPlatform = (function (global) {
                         for (var i in location) {
 
                             var fma_uri = location[i].Located_in.value;
-                            fma_uri = "http://purl.org/sig/ont/fma/fma" + fma_uri.slice(fma_uri.indexOf("FMA:") + 4);
+                            // fma_uri = "http://purl.org/sig/ont/fma/fma" + fma_uri.slice(fma_uri.indexOf("FMA:") + 4);
 
-                            var endpointOLS = abiOntoEndpoint + "/fma/terms?iri=" + fma_uri;
+                            var endpointOLS = ebiOntoEndpoint + "/fma/terms?iri=" + fma_uri;
 
                             sendGetRequest(
                                 endpointOLS,
@@ -1276,13 +1275,13 @@ var ModelDiscoveryPlatform = (function (global) {
 
                 var endpointprOLS;
                 if (jsonProtein.results.bindings.length == 0)
-                    endpointprOLS = abiOntoEndpoint + "/pr";
+                    endpointprOLS = ebiOntoEndpoint + "/pr";
                 else {
                     var pr_uri = jsonProtein.results.bindings[0].Protein.value;
                     if (pr_uri == epithelialcellID)
-                        endpointprOLS = abiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
+                        endpointprOLS = ebiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
                     else
-                        endpointprOLS = abiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
+                        endpointprOLS = ebiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
                 }
 
                 sendGetRequest(
@@ -1338,13 +1337,13 @@ var ModelDiscoveryPlatform = (function (global) {
             function (jsonAltProtein) {
 
                 if (jsonAltProtein.results.bindings.length == 0)
-                    endpointOLS = abiOntoEndpoint + "/pr";
+                    endpointOLS = ebiOntoEndpoint + "/pr";
                 else {
                     var pr_uri = jsonAltProtein.results.bindings[0].Protein.value;
                     if (pr_uri == epithelialcellID)
-                        endpointOLS = abiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
+                        endpointOLS = ebiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
                     else
-                        endpointOLS = abiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
+                        endpointOLS = ebiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
                 }
 
                 sendGetRequest(
@@ -1416,7 +1415,7 @@ var ModelDiscoveryPlatform = (function (global) {
                         tempProtein.push(jsonObj.results.bindings[m].med_entity_uri.value);
                     }
 
-                    if (tmpFMA.indexOf("http://identifiers.org/fma/FMA:") != -1) {
+                    if (tmpFMA.indexOf("http://purl.obolibrary.org/obo/FMA_") != -1) {
                         tempFMA.push(jsonObj.results.bindings[m].med_entity_uri.value);
                     }
                 }
@@ -1574,9 +1573,9 @@ var ModelDiscoveryPlatform = (function (global) {
                 } else {
                     var pr_uri = jsonRelatedMembraneModel.results.bindings[0].Protein.value;
                     if (pr_uri == epithelialcellID)
-                        endpointprOLS = abiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
+                        endpointprOLS = ebiOntoEndpoint + "/cl/terms?iri=" + pr_uri;
                     else
-                        endpointprOLS = abiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
+                        endpointprOLS = ebiOntoEndpoint + "/pr/terms?iri=" + pr_uri;
                 }
 
                 sendGetRequest(
@@ -1598,9 +1597,9 @@ var ModelDiscoveryPlatform = (function (global) {
                                 }
                                 else {
                                     var chebi_uri = jsonObjFlux.results.bindings[0].solute_chebi.value,
-                                        indexofColon = chebi_uri.indexOf("CHEBI:");
-                                    chebi_uri = "http://purl.obolibrary.org/obo/CHEBI_" + chebi_uri.slice(indexofColon + 6);
-                                    endpointOLS = abiOntoEndpoint + "/chebi/terms?iri=" + chebi_uri;
+                                        // indexofColon = chebi_uri.indexOf("CHEBI:");
+                                        // chebi_uri = "http://purl.obolibrary.org/obo/CHEBI_" + chebi_uri.slice(indexofColon + 6);
+                                        endpointOLS = ebiOntoEndpoint + "/chebi/terms?iri=" + chebi_uri;
                                 }
 
                                 sendGetRequest(
@@ -1613,10 +1612,9 @@ var ModelDiscoveryPlatform = (function (global) {
                                         }
                                         else {
                                             var chebi_uri2 = jsonObjFlux.results.bindings[0].solute_chebi2.value,
-                                                indexofColon2 = chebi_uri2.indexOf("CHEBI:");
-                                            chebi_uri2 = "http://purl.obolibrary.org/obo/CHEBI_" + chebi_uri2.slice(indexofColon2 + 6);
-
-                                            endpointOLS2 = abiOntoEndpoint + "/chebi/terms?iri=" + chebi_uri2;
+                                                // indexofColon2 = chebi_uri2.indexOf("CHEBI:");
+                                                // chebi_uri2 = "http://purl.obolibrary.org/obo/CHEBI_" + chebi_uri2.slice(indexofColon2 + 6);
+                                                endpointOLS2 = ebiOntoEndpoint + "/chebi/terms?iri=" + chebi_uri2;
                                         }
 
                                         sendGetRequest(
@@ -1874,20 +1872,22 @@ var ModelDiscoveryPlatform = (function (global) {
                                                 // console.log("medURI: ", medURI);
 
                                                 if (medURI.indexOf(partOfCHEBIUri) != -1) {
-                                                    var indexofColon = medURI.indexOf("CHEBI:");
-                                                    chebi_uri = "http://purl.obolibrary.org/obo/CHEBI_" + medURI.slice(indexofColon + 6);
-                                                    endpointOLS = abiOntoEndpoint + "/chebi/terms?iri=" + chebi_uri;
+                                                    // var indexofColon = medURI.indexOf("CHEBI:");
+                                                    // chebi_uri = "http://purl.obolibrary.org/obo/CHEBI_" + medURI.slice(indexofColon + 6);
+                                                    // endpointOLS = ebiOntoEndpoint + "/chebi/terms?iri=" + chebi_uri;
+                                                    endpointOLS = ebiOntoEndpoint + "/chebi/terms?iri=" + medURI;
                                                 }
                                                 else if (medURI.indexOf(partOfGOUri) != -1) {
-                                                    var indexofColon = medURI.indexOf("GO:");
-                                                    var go_uri = "http://purl.obolibrary.org/obo/GO_" + medURI.slice(indexofColon + 3);
-                                                    endpointOLS = abiOntoEndpoint + "/go/terms?iri=" + go_uri;
+                                                    // var indexofColon = medURI.indexOf("GO:");
+                                                    // var go_uri = "http://purl.obolibrary.org/obo/GO_" + medURI.slice(indexofColon + 3);
+                                                    // endpointOLS = ebiOntoEndpoint + "/go/terms?iri=" + go_uri;
+                                                    endpointOLS = ebiOntoEndpoint + "/go/terms?iri=" + medURI;
                                                 }
                                                 else if (medURI.indexOf(partOfCellUri) != -1) {
-                                                    endpointOLS = abiOntoEndpoint + "/cl/terms?iri=" + medURI;
+                                                    endpointOLS = ebiOntoEndpoint + "/cl/terms?iri=" + medURI;
                                                 }
                                                 else
-                                                    endpointOLS = abiOntoEndpoint + "/pr/terms?iri=" + medURI;
+                                                    endpointOLS = ebiOntoEndpoint + "/pr/terms?iri=" + medURI;
 
                                                 sendGetRequest(
                                                     endpointOLS,
@@ -2021,9 +2021,10 @@ var ModelDiscoveryPlatform = (function (global) {
         var WSDbfetchREST = function () {
 
             // var dbfectendpoint = "http://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
-            var cors_api_url = "http://localhost:8080/",
-                // dbfectendpoint = cors_api_url + "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
-                dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
+            var cors_api_url = "https://cors-anywhere.herokuapp.com/",
+                dbfectendpoint = cors_api_url + "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
+            // cors_api_url = "http://localhost:8080/",
+            // dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
 
             sendGetRequest(
                 dbfectendpoint,

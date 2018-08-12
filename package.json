@@ -1,7 +1,7 @@
 {
-  "name": "epithelial-modelling-platform",
+  "name": "model-discovery-tool",
   "version": "0.0.1",
-  "description": "A web-based epithelial transport discovery, exploration and assembly tool",
+  "description": "A web-based epithelial transport discovery, exploration and recommendation tool",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dewancse/epithelial-modelling-platform.git"
+    "url": "https://github.com/dewancse/model-discovery-tool.git"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
