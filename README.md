@@ -4,11 +4,10 @@ Model discovery tool is a web-based epithelial transport discovery, exploration 
 ### Installing MDT
 Please do the following steps to clone the EDT in your workspace:
 
-- git clone https://github.com/dewancse/use-case-application.git
-- run the "server.js" with this command: "node ./src/js/server.js"
-- open "index.html" in the browser
-- install "CORS Toggle" to deal with cross browser origin issue.
-- if you change something in any js files of the project, you need to execute webpack with this command: "webpack --progress --profile" 
+- git clone https://github.com/dewancse/model-discovery-tool.git
+- execute "npm install" to install packages in package.json
+- execute "npm start" to run server.js
+- navigate to http://127.0.0.1:8080/ to start index.html home page
 
 ### MDT workflow
 
@@ -32,12 +31,13 @@ This system will appear as a collapsible window when the user will click a model
 ### Accessibility
 The application is accessible by navigating::
 ```
-  https://dewancse.github.io/model-discovery-tool/src/index.html
+  https://dewancse.github.io/model-discovery-tool/public/index.html Or https://aqueous-plains-96544.herokuapp.com/
 ```
 
 ### Programming Language
 - JavaScript
 - SPARQL
+- Node.js
 
 ### Limitations
 We will implement Unit testing and Functional testing to make sure the code is functioning as expected.
