@@ -31,7 +31,7 @@ This system will appear as a collapsible window when the user will click a model
 ### Accessibility
 The application is accessible by navigating::
 ```
-  https://dewancse.github.io/model-discovery-tool/public/index.html Or https://aqueous-plains-96544.herokuapp.com/
+  https://dewancse.github.io/model-discovery-tool/public/index.html Or https://ancient-inlet-34285.herokuapp.com/
 ```
 
 ### Programming Language
