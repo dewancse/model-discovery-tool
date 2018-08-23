@@ -30,8 +30,8 @@ var ModelDiscoveryPlatform = (function (global) {
     // var endpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search";
     var pmrEndpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search",
         cors_api_url = "https://cors-anywhere.herokuapp.com/",
-        endpoint = cors_api_url + pmrEndpoint;
-    //endpoint = pmrEndpoint;
+        // endpoint = cors_api_url + pmrEndpoint;
+        endpoint = pmrEndpoint;
 
     // var ebiOntoEndpoint = "https://www.ebi.ac.uk/ols/api/ontologies";
     var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
@@ -2000,9 +2000,8 @@ var ModelDiscoveryPlatform = (function (global) {
 
             // var dbfectendpoint = "http://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
             var cors_api_url = "https://cors-anywhere.herokuapp.com/",
-                dbfectendpoint = cors_api_url + "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
-            // cors_api_url = "http://localhost:8080/",
-            // dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
+                // dbfectendpoint = cors_api_url + "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
+                dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
 
             sendGetRequest(
                 dbfectendpoint,
