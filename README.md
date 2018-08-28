@@ -2,6 +2,14 @@
 Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest.
 
 ### Installing MDT
+
+## Docker
+```
+docker build -f Dockerfile.nginx -t andre/mdt-nginx .
+docker run -p 49160:80 -d andre/mdt-nginx --name mdt-nginx
+```
+And then http://localhost:49160 should work.
+
 Please do the following steps to install the MDT in your workspace:
 
 - `git clone https://github.com/dewancse/model-discovery-tool.git`
