@@ -1,9 +1,11 @@
-### Model Discovery Tool (MDT)
-Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest.
+# Model discovery with the Physiome Model Repository
 
-### Installing MDT
+Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest. This tool is deployed at this address: URL GOES HERE; as a demonstration of the capabilities described is the paper: LINK TO PREPRINT HERE?.
 
-## Docker
+## Installing MDT
+
+This tool makes use of webservices provided by PMR as well as several services from the European Bioinformatics Institute (EBI).
+
 ```
 docker build -f Dockerfile.nginx -t andre/mdt-nginx .
 docker run -p 49160:8181 -d andre/mdt-nginx --name mdt-nginx
