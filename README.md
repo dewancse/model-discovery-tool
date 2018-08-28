@@ -7,7 +7,7 @@ Model discovery tool is a web-based epithelial transport discovery, exploration 
 This tool makes use of webservices provided by PMR as well as several services from the European Bioinformatics Institute (EBI).
 
 ```
-docker build -f Dockerfile.nginx -t andre/mdt-nginx .
+docker build -f Dockerfile -t andre/mdt-nginx .
 docker run -p 49160:8181 -d andre/mdt-nginx --name mdt-nginx
 ```
 And then http://localhost:49160 should work.
