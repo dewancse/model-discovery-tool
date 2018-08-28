@@ -30,11 +30,15 @@ var ModelDiscoveryPlatform = (function (global) {
     // var endpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search";
     var pmrEndpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search",
         cors_api_url = "https://cors-anywhere.herokuapp.com/",
+        nginx_proxy = "/.api/pmr/sparql",
         // endpoint = cors_api_url + pmrEndpoint;
-        endpoint = pmrEndpoint;
+        //endpoint = pmrEndpoint;
+        endpoint = nginx_proxy;
 
     // var ebiOntoEndpoint = "https://www.ebi.ac.uk/ols/api/ontologies";
-    var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
+    //var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
+    
+    var abiOntoEndpoint = "/.api/ols/ontologies";
 
     var organ = [
         {
@@ -683,6 +687,7 @@ var ModelDiscoveryPlatform = (function (global) {
 
         else if (request.readyState == 4) {
             console.log("ERROR!");
+            console.log(request.requestData);
             console.error(request.responseText);
         }
     }
@@ -1959,7 +1964,8 @@ var ModelDiscoveryPlatform = (function (global) {
 
         // Related apical or basolateral model
         var index = 0, ProteinSeq = "", requestData, PID = [],
-            baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
+            baseUrl = "/.api/ebi/clustalo";
+            //baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
 
         proteinOrMedPrID(membraneModelID, PID);
         console.log("PID BEFORE: ", PID);
@@ -2001,7 +2007,8 @@ var ModelDiscoveryPlatform = (function (global) {
             // var dbfectendpoint = "http://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
             var cors_api_url = "https://cors-anywhere.herokuapp.com/",
                 // dbfectendpoint = cors_api_url + "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
-                dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
+                //dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
+                dbfectendpoint = "/.api/ebi/uniprotkb/" + PID[index] + "/fasta";
 
             sendGetRequest(
                 dbfectendpoint,
