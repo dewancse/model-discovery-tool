@@ -6,7 +6,7 @@ Model discovery tool is a web-based epithelial transport discovery, exploration 
 ## Docker
 ```
 docker build -f Dockerfile.nginx -t andre/mdt-nginx .
-docker run -p 49160:80 -d andre/mdt-nginx --name mdt-nginx
+docker run -p 49160:8181 -d andre/mdt-nginx --name mdt-nginx
 ```
 And then http://localhost:49160 should work.
 
