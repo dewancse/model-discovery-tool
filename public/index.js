@@ -30,15 +30,15 @@ var ModelDiscoveryPlatform = (function (global) {
     // var endpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search";
     var pmrEndpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search",
         cors_api_url = "https://cors-anywhere.herokuapp.com/",
-        nginx_proxy = "/.api/pmr/sparql",
+        // nginx_proxy = "/.api/pmr/sparql",
         // endpoint = cors_api_url + pmrEndpoint;
-        //endpoint = pmrEndpoint;
-        endpoint = nginx_proxy;
+        endpoint = pmrEndpoint;
+    // endpoint = nginx_proxy;
 
     // var ebiOntoEndpoint = "https://www.ebi.ac.uk/ols/api/ontologies";
-    //var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
-    
-    var abiOntoEndpoint = "/.api/ols/ontologies";
+
+    var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
+    // var abiOntoEndpoint = "/.api/ols/ontologies";
 
     var organ = [
         {
@@ -1964,8 +1964,8 @@ var ModelDiscoveryPlatform = (function (global) {
 
         // Related apical or basolateral model
         var index = 0, ProteinSeq = "", requestData, PID = [],
-            baseUrl = "/.api/ebi/clustalo";
-            //baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
+            // baseUrl = "/.api/ebi/clustalo";
+            baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
 
         proteinOrMedPrID(membraneModelID, PID);
         console.log("PID BEFORE: ", PID);
@@ -1973,12 +1973,13 @@ var ModelDiscoveryPlatform = (function (global) {
         // var draggedMedPrID = splitPRFromProtein(circleID);
         // PID.push(draggedMedPrID);
 
-        var indexOfPR = proteinName.search("PR_");
-        var draggedMedPrID = proteinName.slice(indexOfPR + 3, proteinName.length);
-        PID.push(draggedMedPrID);
-
-        console.log("darggedMedPr: ", draggedMedPrID);
-
+        console.log("ProteinName: ", proteinName);
+        if (proteinName.indexOf(partOfProteinUri) != -1) {
+            var indexOfPR = proteinName.search("PR_");
+            var draggedMedPrID = proteinName.slice(indexOfPR + 3, proteinName.length);
+            PID.push(draggedMedPrID);
+        }
+        
         console.log("PID BEFORE Filter: ", PID);
 
         // remove duplicate protein ID
@@ -2007,8 +2008,8 @@ var ModelDiscoveryPlatform = (function (global) {
             // var dbfectendpoint = "http://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
             var cors_api_url = "https://cors-anywhere.herokuapp.com/",
                 // dbfectendpoint = cors_api_url + "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
-                //dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
-                dbfectendpoint = "/.api/ebi/uniprotkb/" + PID[index] + "/fasta";
+                dbfectendpoint = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch/uniprotkb/" + PID[index] + "/fasta";
+            // dbfectendpoint = "/.api/ebi/uniprotkb/" + PID[index] + "/fasta";
 
             sendGetRequest(
                 dbfectendpoint,
