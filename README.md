@@ -22,6 +22,9 @@ The first step is to discover entities in PMR relevant to your interests. The di
 
 Presented in the screenshot below is an example of discovered entities from PMR for the entered text `flux of sodium`. From these results, the user can access further information on each discovered entity to help them determine which may be most relevant to their work. The additional information usually consists of the name of the model, component name and variable name; associated biological information about the entity deposited in PMR; protein names; and species and genes used during the experiments.
 
+![Example MDT session](public/img/UseCaseDiagram.png)
+*A screenshot illustrating an example MDT session, where the user has queried for any entities relevant to the text "flux of sodium".*
+
 ### Input handling
 
 We would like users to be able to enter the "plain text" description of what they are interested in, but currently the entered text needs to be converted to one or more semantic queries executed against the PMR knowledgebase. In the future, we are looking to integrate tools such as Natural Language Processing to automate this conversion. Currently we define a dictionary of common phrases that the potential users of renal epithelial cell models might be interested in and use that to map the entered text to the semantic queries. Therefore, mapping follows the *exact match* principle. It is case insenstitive and users have to include the following terms when searching for a model:
@@ -30,28 +33,28 @@ We would like users to be able to enter the "plain text" description of what the
 | --- | --- | --- |
 | `concentration` | `flux` | sodium, hydrogen, chloride, potassium, ammonium |
 
-#### Recommender System
-This system will appear as a collapsible window when the user will click a model across the apical or basolateral membrane. Presented below is an example of a CellML model entity - `flux of sodium` in the weinstein model after clicking the Weinstein model. Initially this system gives a brief description of the clicked model followed by some suggestions from the annotation in PMR. By using this system, user will get existing basolateral membranes with the sodium solute. Also, alternative models of this model from various workspaces, and related kidney models have been provided for further exploration. User can choose one of the models from this system as a replacement of the clicked model.
+### Recommender System
 
-<center><img src=public/img/UseCaseDiagram.png /></center>
+As part of the additional information available for the discovered entities, a recommender system has been implemented to present the user with additional entities in PMR that may be of interest. As with the rest of this tool, the recommender system is currently very renal epithelial transport focussed, but the implementation will be easily extendable to a wider range of physiology as the available semantic knowledge in PMR grows.
 
-### Accessibility
+As shown in the screenshot displayed above, the additional information for an entity is displayed when the user selects a discovered entity. This system will appear as a collapsible window when the user will click a model across the apical or basolateral membrane. Presented above is an example of a CellML model entity - `flux of sodium` in the Weinstein model after clicking the Weinstein model. Initially this system gives a brief description of the clicked model followed by some suggestions from the annotation in PMR. By using this system the user will get existing transporters located in the basolateral membrane which transport the sodium solute. Also, alternative models of this model from various workspaces, and related kidney models have been provided for further exploration. User can choose one of the models from this system as a replacement of the clicked model.
+
+## Accessibility
 The application is accessible by navigating::
 ```
   https://dewancse.github.io/model-discovery-tool/public/index.html Or https://ancient-inlet-34285.herokuapp.com/
 ```
 
-### Programming Language
+## Programming Language
 - JavaScript
 - SPARQL
-- Node.js
 
-### Limitations
-We will implement Unit testing and Functional testing to make sure the code is functioning as expected.
+## Limitations
+We will implement Unit testing and Functional testing to make sure the code is functioning as expected. While the underlying tools are not specific to renal epithelial transport, the currently supported text-to-query mappings and recommender system are very specific to renal epithelial transport.
 
 ### List of contributors
-- Dewan Sarwar
-- David Nickerson
+- Dewan Sarwar (@dewancse)
+- David Nickerson (@nickerso)
 
 ### Licencing
 MIT license!
