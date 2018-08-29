@@ -1962,7 +1962,7 @@ var ModelDiscoveryPlatform = (function (global) {
         // Related apical or basolateral model
         var index = 0, ProteinSeq = "", requestData, PID = [],
             baseUrl = "/.api/ebi/clustalo";
-        // baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
+            //baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
 
         proteinOrMedPrID(membraneModelID, PID);
         console.log("PID BEFORE: ", PID);
@@ -2035,6 +2035,9 @@ var ModelDiscoveryPlatform = (function (global) {
 
                         var requestUrl = baseUrl + "/run/";
 
+                        console.log("Andre is here");
+                        console.log(requestData);
+                        
                         sendEBIPostRequest(
                             requestUrl,
                             requestData,
