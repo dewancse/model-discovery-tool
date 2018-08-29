@@ -4,30 +4,27 @@ Model discovery tool is a web-based epithelial transport discovery, exploration 
 
 ## Installing MDT
 
-This tool makes use of webservices provided by PMR as well as several services from the European Bioinformatics Institute (EBI).
+This tool makes use of webservices provided by [PMR](https://models.physiomeproject.org) as well as several services from the [European Bioinformatics Institute (EBI)](https://www.ebi.ac.uk/services). In oder to develop web applications which make use of services in this way, it is best to make use of a reverse proxy to ensure the web application plays nicely with modern web browsers. In this project, we use a Docker-based [NGINX](http://nginx.org/) reverse proxy for this purpose, which makes it reasonably easy to get this demonstration up and running locally as well as deploying it on various cloud platforms.
 
+If you have Docker and git installed on your machine, then the following should get you up and running:
 ```
-docker build -f Dockerfile -t andre/mdt-nginx .
-docker run -p 49160:8181 -d andre/mdt-nginx --name mdt-nginx
+git clone https://github.com/dewancse/model-discovery-tool
+docker build -f Dockerfile -t unique-name/mdt-nginx .
+docker run -p 49160:8181 -d unique-name/mdt-nginx
 ```
 And then http://localhost:49160 should work.
 
-Please do the following steps to install the MDT in your workspace:
+## MDT workflow
 
-- `git clone https://github.com/dewancse/model-discovery-tool.git`
-- `npm install` to install packages
-- `npm start` to run server.js
-- Open `http://127.0.0.1:8080/` in the browser to start index.html home page
+### Discover relevant entities
 
-### MDT workflow
+The first step is to discover entities in PMR relevant to your interests. The discovered entities are typically components or variables in CellML models, but as the annotated content on PMR continues to grow the pool of potentially relevant entities similarly grows. With our current focus on epithelial transport in the kidney, this demonstration is tuned toward the kinds of entities most commonly found in models of such systems - e.g., fluxes of solutes typically found in renal epithelial cells (sodium, potassium, ammonium...) and processes occuring in, or between, the lumen, cytosol, and interstitial compartments.
 
-#### Discover CellML Models
-Presented below screenshot is an example of discovered models from the annotated information in the Physiome Model Repository (PMR) for a search term `flux of sodium`. From this, user can analyse CellML model entity which consists of name of the model, component name and variable name; biological annotation deposited in PMR; protein name; and species and genes used during the experiments.
+Presented in the screenshot below is an example of discovered entities from PMR for the entered text `flux of sodium`. From these results, the user can access further information on each discovered entity to help them determine which may be most relevant to their work. The additional information usually consists of the name of the model, component name and variable name; associated biological information about the entity deposited in PMR; protein names; and species and genes used during the experiments.
 
-#### Input requirements
-We have maintained a dictionary as name and value pairs to map searched text with URIs, without applying Natural Language Processing technique. However, this would be integrated later to make this process dynamic.
+### Input handling
 
-Therefore, mapping follows `exact match` principle. It is case insenstitive and users have to include the following terms when searching for a model:
+We would like users to be able to enter the "plain text" description of what they are interested in, but currently the entered text needs to be converted to one or more semantic queries executed against the PMR knowledgebase. In the future, we are looking to integrate tools such as Natural Language Processing to automate this conversion. Currently we define a dictionary of common phrases that the potential users of renal epithelial cell models might be interested in and use that to map the entered text to the semantic queries. Therefore, mapping follows the *exact match* principle. It is case insenstitive and users have to include the following terms when searching for a model:
 
 | Physical entity | Physical process | Solutes |
 | --- | --- | --- |
