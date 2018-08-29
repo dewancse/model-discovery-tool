@@ -42,7 +42,7 @@ As shown in the screenshot displayed above, the additional information for an en
 ## Accessibility
 The application is accessible by navigating::
 ```
-  https://dewancse.github.io/model-discovery-tool/public/index.html Or https://ancient-inlet-34285.herokuapp.com/
+  updated links go here...
 ```
 
 ## Programming Language
@@ -53,8 +53,8 @@ The application is accessible by navigating::
 We will implement Unit testing and Functional testing to make sure the code is functioning as expected. While the underlying tools are not specific to renal epithelial transport, the currently supported text-to-query mappings and recommender system are very specific to renal epithelial transport.
 
 ### List of contributors
-- Dewan Sarwar (@dewancse)
-- David Nickerson (@nickerso)
+- Dewan Sarwar - @dewancse
+- David Nickerson - @nickerso
 
 ### Licencing
 MIT license!
