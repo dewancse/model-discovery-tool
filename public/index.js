@@ -34,7 +34,7 @@ var ModelDiscoveryPlatform = (function (global) {
 
     // var ebiOntoEndpoint = "https://www.ebi.ac.uk/ols/api/ontologies";
 
-    // var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
+    var abiOntoEndpointInternal = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
     var abiOntoEndpoint = "/.api/ols/ontologies";
 
     var organ = [
@@ -613,31 +613,42 @@ var ModelDiscoveryPlatform = (function (global) {
         }
     }
 
+    var checkRequestUrl = function (url) {
+        return url.replace(abiOntoEndpointInternal, abiOntoEndpoint);
+    }
+
     // Makes an Ajax GET request to 'requestUrl'
     var sendGetRequest = function (requestUrl, responseHandler, isJsonResponse) {
+
         var request = getRequestObject();
 
         request.onreadystatechange = function () {
             handleResponse(request, responseHandler, isJsonResponse);
         };
-        request.open("GET", requestUrl, true);
+
+        var url = checkRequestUrl(requestUrl);
+
+        request.open("GET", url, true);
         request.send(null); // for POST only
     };
 
     // Makes an Ajax POST request to 'requestUrl'
     var sendPostRequest = function (requestUrl, query, responseHandler, isJsonResponse) {
+
         var request = getRequestObject();
 
         request.onreadystatechange = function () {
             handleResponse(request, responseHandler, isJsonResponse);
         };
 
-        request.open("POST", requestUrl, true);
+        var url = checkRequestUrl(requestUrl);
+        request.open("POST", url, true);
 
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.setRequestHeader("Accept", "application/sparql-results+json");
 
+        request.setRequestHeader("Accept", "application/sparql-results+json");
         request.send(query); // for POST only
+
     };
 
     // post function to get similarity matrix
@@ -648,7 +659,8 @@ var ModelDiscoveryPlatform = (function (global) {
             handleResponse(request, responseHandler, isJsonResponse);
         };
 
-        request.open("POST", requestUrl, true);
+        var url = checkRequestUrl(requestUrl);
+        request.open("POST", url, true);
 
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         request.setRequestHeader("Accept", "text/plain");
@@ -1962,7 +1974,7 @@ var ModelDiscoveryPlatform = (function (global) {
         // Related apical or basolateral model
         var index = 0, ProteinSeq = "", requestData, PID = [],
             baseUrl = "/.api/ebi/clustalo";
-            //baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
+        //baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
 
         proteinOrMedPrID(membraneModelID, PID);
         console.log("PID BEFORE: ", PID);
@@ -2037,7 +2049,7 @@ var ModelDiscoveryPlatform = (function (global) {
 
                         console.log("Andre is here");
                         console.log(requestData);
-                        
+
                         sendEBIPostRequest(
                             requestUrl,
                             requestData,
