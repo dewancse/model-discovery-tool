@@ -1,6 +1,6 @@
 # Model discovery with the Physiome Model Repository
 
-Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest. This tool is deployed at this address: http://model-discovery-tool.nectar.auckland.ac.nz:8181/; as a demonstration of the capabilities described is the paper: LINK TO PREPRINT HERE?.
+Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest. This tool is deployed at this address: http://model-discovery-tool.nectar.auckland.ac.nz; as a demonstration of the capabilities described is the paper: LINK TO PREPRINT HERE?.
 
 ## Installing MDT
 
@@ -42,7 +42,7 @@ As shown in the screenshot displayed above, the additional information for an en
 ## Accessibility
 The application is accessible by navigating::
 ```
-  http://model-discovery-tool.nectar.auckland.ac.nz:8181/ or http://130.216.216.168:8181/
+  http://model-discovery-tool.nectar.auckland.ac.nz or http://130.216.216.164
 ```
 
 ## Programming Language
