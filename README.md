@@ -39,6 +39,45 @@ As part of the additional information available for the discovered entities, a r
 
 As shown in the screenshot displayed above, the additional information for an entity is displayed when the user selects a discovered entity. This system will appear as a collapsible window when the user will click a model across the apical or basolateral membrane. Presented above is an example of a CellML model entity - `flux of sodium` in the Weinstein model after clicking the Weinstein model. Initially this system gives a brief description of the clicked model followed by some suggestions from the annotation in PMR. By using this system the user will get existing transporters located in the basolateral membrane which transport the sodium solute. Also, alternative models of this model from various workspaces, and related kidney models have been provided for further exploration. User can choose one of the models from this system as a replacement of the clicked model.
 
+## Docker Image in Nectar Cloud
+We have used Nectar Cloud to up and running our Docker image. Navigate to [Dashboard](https://dashboard.rc.nectar.org.au/auth/login/) in Nectar Cloud and provide login credentials. As a stduent at the University of Auckland, I have provided my login information, as shown below. Presented below are some screenshots that we have gone through to deploy our docker image in Nectar. Please read texts below of each screenshot to know more about a screenshot.  
+
+![Example Login-1 session](public/img/login-1.png) 
+
+*A login screen, where the user will choose either NZ or Australian.*
+
+![Example Login-2 session](public/img/login-2.png)
+
+*A screenshot illustrating my federation and organization details.*
+
+![Example Docker-1 session](public/img/docker-1.png)
+
+*An example Docker setup session, where the user will click "Quick Deploy" to begin the session.*
+
+![Example Docker-2 session](public/img/docker-2.png)
+
+*Fill out an application name, a docker image name from the Docker registry, and a port number for the docker container. Then click "Add Application".*
+
+![Example Docker-3 session](public/img/docker-3.png)
+
+*Enter an application name and the remaining fields are optional. Then click "Next".*
+
+![Example Docker-4 session](public/img/docker-4.png)
+
+*Choose the Ubuntu instance name from the dropdown menu, along with your key pair and availability zone. Follow this [key pair](https://support.ehelp.edu.au/support/solutions/articles/6000055376-launching-virtual-machines#Keypair) document to create a key pair, which will appear here under the key pair dropdown menu. Then click "Create".*
+
+![Example Docker-5 session](public/img/docker-5.png)
+
+*Click "Create" to setup an environment for the docker image.*
+
+![Example Docker-6 session](public/img/docker-6.png)
+
+*Then click "Deploy This Environment" to start deploying session.*
+
+![Example Docker-7 session](public/img/docker-7.png)
+
+*Lastly, navigate to the IP address with the port number mentioned in the screenshot to visit the up and running docker image. Note that the user can apply for a DNS host name for this IP address to Nectar support team [Ask For Help](https://support.ehelp.edu.au/support/home).*
+
 ## Accessibility
 The application is accessible by navigating::
 ```
