@@ -40,7 +40,7 @@ As part of the additional information available for the discovered entities, a r
 As shown in the screenshot displayed above, the additional information for an entity is displayed when the user selects a discovered entity. This system will appear as a collapsible window when the user will click a model across the apical or basolateral membrane. Presented above is an example of a CellML model entity - `flux of sodium` in the Weinstein model after clicking the Weinstein model. Initially this system gives a brief description of the clicked model followed by some suggestions from the annotation in PMR. By using this system the user will get existing transporters located in the basolateral membrane which transport the sodium solute. Also, alternative models of this model from various workspaces, and related kidney models have been provided for further exploration. User can choose one of the models from this system as a replacement of the clicked model.
 
 ## Docker Image in Nectar Cloud
-We have used Nectar Cloud to up and running our Docker image. Navigate to [Dashboard](https://dashboard.rc.nectar.org.au/auth/login/) in Nectar Cloud and provide login credentials. As a stduent at the University of Auckland, I have provided my login information, as shown below. Presented below are some screenshots that we have gone through to deploy our docker image in Nectar. Please read texts below of each screenshot to know more about a screenshot.  
+We have deployed our Docker image to Nectar Cloud. In order to begin with the deployemnet process, please navigate to [Dashboard](https://dashboard.rc.nectar.org.au/auth/login/) in Nectar Cloud and provide login credentials. As a student at the University of Auckland, I have provided my login credentials, as illustrated below. Following screendshots are examples of our Docker image's deployment to Nectar. Please read texts below of each screenshot to know in details.  
 
 ![Example Login-1 session](public/img/login-1.png) 
 
@@ -52,7 +52,7 @@ We have used Nectar Cloud to up and running our Docker image. Navigate to [Dashb
 
 ![Example Docker-1 session](public/img/docker-1.png)
 
-*An example Docker setup session, where the user will click "Quick Deploy" to begin the session.*
+*An example Docker setup session, where the user will click "Quick Deploy" to begin with a session.*
 
 ![Example Docker-2 session](public/img/docker-2.png)
 
@@ -68,11 +68,11 @@ We have used Nectar Cloud to up and running our Docker image. Navigate to [Dashb
 
 ![Example Docker-5 session](public/img/docker-5.png)
 
-*Click "Create" to setup an environment for the docker image.*
+*Click "Create" to setup an environment for the Docker container.*
 
 ![Example Docker-6 session](public/img/docker-6.png)
 
-*Then click "Deploy This Environment" to start deploying session.*
+*Then click "Deploy This Environment" to begin with a deployment session.*
 
 ![Example Docker-7 session](public/img/docker-7.png)
 
