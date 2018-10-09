@@ -720,7 +720,7 @@ var ModelDiscoveryPlatform = (function (global) {
             "                    </div>\n" +
             "                </div>\n" +
             "            </div>\n" +
-            "            <input id=\"searchTxt\" name=\"searchTxt\" value=\"\" type=\"text\" placeholder=\"Search Models\"\n" +
+            "            <input id=\"searchTxt\" name=\"searchTxt\" value=\"\" type=\"text\" placeholder=\"Search Models (e.g. Flux of Sodium)\"\n" +
             "                   class=\"form-control input-lg\" aria-label=\"...\">\n" +
             "        </div>\n" +
             "        </br>\n" +
@@ -736,7 +736,7 @@ var ModelDiscoveryPlatform = (function (global) {
 
     // DOCUMENTATION: load documentation from github
     mainUtils.loadDocumentation = function () {
-        var uri = "https://github.com/dewancse/epithelial-discovery-tool";
+        var uri = "https://github.com/dewancse/model-discovery-tool";
         $("#main-content").html("Documentation can be found at " +
             "<a href=" + uri + " + target=_blank>README.md in github</a>");
     };
