@@ -59,12 +59,15 @@ body {
     width: 500px;
     background-position: center;
 }
-
 /* END HEADER */
 
 /* main-content */
 .content {
     min-height: 80%;
 }
-
 /* END main-content*/
+
+td {
+    max-width: 600px;
+    word-wrap: break-word;
+}

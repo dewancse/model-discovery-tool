@@ -1,3 +1,11 @@
+/*
+ * Created by Dewan Sarwar on 14/02/2019
+ * AJAX POST and GET requests
+ */
+var abiOntoEndpointInternal = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
+var abiOntoEndpoint = "/.api/ols/ontologies";
+// var abiOntoEndpoint = "http://ontology.cer.auckland.ac.nz/ols-boot/api/ontologies";
+
 // Returns an HTTP request object
 function getRequestObject() {
     if (window.XMLHttpRequest) {
@@ -13,31 +21,43 @@ function getRequestObject() {
     }
 }
 
+// replace Auckland OLS URI with nginx URI
+var checkRequestUrl = function (url) {
+    return url.replace(abiOntoEndpointInternal, abiOntoEndpoint);
+};
+
 // Makes an Ajax GET request to 'requestUrl'
 var sendGetRequest = function (requestUrl, responseHandler, isJsonResponse) {
+
     var request = getRequestObject();
 
     request.onreadystatechange = function () {
         handleResponse(request, responseHandler, isJsonResponse);
     };
-    request.open("GET", requestUrl, true);
+
+    var url = checkRequestUrl(requestUrl);
+
+    request.open("GET", url, true);
     request.send(null); // for POST only
 };
 
 // Makes an Ajax POST request to 'requestUrl'
 var sendPostRequest = function (requestUrl, query, responseHandler, isJsonResponse) {
+
     var request = getRequestObject();
 
     request.onreadystatechange = function () {
         handleResponse(request, responseHandler, isJsonResponse);
     };
 
-    request.open("POST", requestUrl, true);
+    var url = checkRequestUrl(requestUrl);
+    request.open("POST", url, true);
 
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.setRequestHeader("Accept", "application/sparql-results+json");
 
+    request.setRequestHeader("Accept", "application/sparql-results+json");
     request.send(query); // for POST only
+
 };
 
 // post function to get similarity matrix
@@ -48,7 +68,8 @@ var sendEBIPostRequest = function (requestUrl, query, responseHandler, isJsonRes
         handleResponse(request, responseHandler, isJsonResponse);
     };
 
-    request.open("POST", requestUrl, true);
+    var url = checkRequestUrl(requestUrl);
+    request.open("POST", url, true);
 
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.setRequestHeader("Accept", "text/plain");
@@ -65,12 +86,10 @@ var sendEBIPostRequest = function (requestUrl, query, responseHandler, isJsonRes
 }
 
 // Only calls user provided 'responseHandler'
-// function if response is ready
-// and not an error
+// function if response is ready and not an error
 function handleResponse(request, responseHandler, isJsonResponse) {
 
     if ((request.readyState == 4) && (request.status == 200)) {
-
         // Default to isJsonResponse = true
         if (isJsonResponse == undefined) {
             isJsonResponse = true;
@@ -86,12 +105,7 @@ function handleResponse(request, responseHandler, isJsonResponse) {
 
     else if (request.readyState == 4) {
         console.log("ERROR!");
+        console.log(request.requestData);
         console.error(request.responseText);
     }
 }
-
-exports.sendGetRequest = sendGetRequest;
-exports.sendPostRequest = sendPostRequest;
-exports.sendEBIPostRequest = sendEBIPostRequest;
-exports.getRequestObject = getRequestObject;
-exports.handleResponse = handleResponse;
