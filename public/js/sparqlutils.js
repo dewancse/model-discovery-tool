@@ -14,7 +14,7 @@ var mediatorSPARQL = function (modelEntity) {
         "}";
 
     return query;
-}
+};
 
 var makecotransporterSPARQL = function (membrane1, membrane2) {
     var query = "PREFIX semsim: <http://www.bhi.washington.edu/SemSim#>" +

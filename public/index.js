@@ -93,6 +93,7 @@ var ModelDiscoveryPlatform = (function (global) {
             }
 
             chebiURI = uriCHEBI.slice(1, uriCHEBI.length - 1);
+            console.log("chebi_uri after Enter: ", chebiURI);
 
             showLoading("#searchList");
 
@@ -115,7 +116,7 @@ var ModelDiscoveryPlatform = (function (global) {
                     typeOfSearchTerm = keyValue;
                     query = discoveryWithFluxOfSolute(uriCHEBI)
                 }
-                else { // model disocvery with 'concentration of sodium', etc.
+                else { // model discovery with 'concentration of sodium', etc.
                     typeOfSearchTerm = keyValue;
                     query = discoveryWithConcentrationOfSolute(uriCHEBI);
                 }
@@ -305,12 +306,14 @@ var ModelDiscoveryPlatform = (function (global) {
                 console.log("jsonModel: ", jsonModel);
 
                 // chebi URI
-                if (jsonModel.results.bindings[0].chebi_uri.value != undefined) // flux
+                if (typeOfSearchTerm == "flux") { // flux
                     chebiURI = jsonModel.results.bindings[0].chebi_uri.value;
-                else if (jsonModel.results.bindings[0].chebi_uriCon.value != undefined) // concentration
-                    chebiURI = jsonModel.results.bindings[0].chebi_uriCon.value;
-
-                console.log("chebi_uri: ", chebiURI);
+                    console.log("chebi_uri of flux clicked: ", chebiURI);
+                }
+                else if (typeOfSearchTerm == "concentration") { // concentration
+                    chebiURI = jsonModel.results.bindings[0].chebi_uri.value;
+                    console.log("chebi_uri of concentration clicked: ", chebiURI);
+                }
 
                 if (jsonModel.results.bindings.length == 0)
                     proteinName = undefined;
@@ -1442,7 +1445,7 @@ var ModelDiscoveryPlatform = (function (global) {
         // Related apical or basolateral model
         var index = 0, ProteinSeq = "", requestData, PID = [],
             baseUrl = "/.api/ebi/clustalo";
-            // baseUrl = "https://www.ebi.ac.uk/Tools/services/rest/clustalo";
+        // baseUrl = "https://www.ebi.ac.ukfcellml/Tools/services/rest/clustalo";
 
         proteinOrMedPrID(membraneModelID, PID);
         console.log("PID BEFORE: ", PID);
@@ -1639,7 +1642,8 @@ var ModelDiscoveryPlatform = (function (global) {
         // Table header
         if (discoverIndex == 0) {
             table = $("<table/>").addClass("table table-hover table-condensed"); //table-bordered table-striped
-            thead = $("<thead/>"), tr = $("<tr/>");
+            thead = $("<thead/>");
+            tr = $("<tr/>");
             tbody = $("<tbody/>");
             for (var i in head) {
                 tr.append($("<th/>").append(head[i]));

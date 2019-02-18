@@ -1,7 +1,7 @@
 /**
  * Created by Dewan Sarwar on 14/02/2019
  * User defined functions to support Model Discovery Tool
- * */
+ */
 // var endpoint = "https://models.physiomeproject.org/pmr2_virtuoso_search";
 var endpoint = "/.api/pmr/sparql";
 
