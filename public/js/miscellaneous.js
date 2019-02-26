@@ -347,9 +347,13 @@ var organ = [
 // based on protein identifier deposited in the Physiome Model Repository
 var ProteinToOrganDict = [
     {
-        "key": "http://purl.obolibrary.org/obo/CL_0002642",
+        "key": "http://purl.obolibrary.org/obo/CL_0000746",
         "value": "Cardiac"
     },
+    // {
+    //     "key": "http://purl.obolibrary.org/obo/CL_0002642",
+    //     "value": "Cardiac"
+    // },
     {
         "key": "http://purl.obolibrary.org/obo/UBERON_0004535",
         "value": "Cardiac"
@@ -510,8 +514,9 @@ var dictionary = [
 // epithelial cell identifiers used in the biological annotation in PMR
 var epithelialcellID = [
     "http://purl.obolibrary.org/obo/CL_0000066",
+    // "http://purl.obolibrary.org/obo/CL_0002642",
     "http://purl.obolibrary.org/obo/CL_0000786",
-    "http://purl.obolibrary.org/obo/CL_0002642",
+    "http://purl.obolibrary.org/obo/CL_0000746",
     "http://purl.obolibrary.org/obo/CL_0002131",
     "http://purl.obolibrary.org/obo/CL_0000082",
     "http://purl.obolibrary.org/obo/UBERON_0004535",

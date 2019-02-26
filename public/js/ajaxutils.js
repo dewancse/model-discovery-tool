@@ -57,7 +57,6 @@ var sendPostRequest = function (requestUrl, query, responseHandler, isJsonRespon
 
     request.setRequestHeader("Accept", "application/sparql-results+json");
     request.send(query); // for POST only
-
 };
 
 // post function to get similarity matrix
@@ -83,7 +82,7 @@ var sendEBIPostRequest = function (requestUrl, query, responseHandler, isJsonRes
     }
     // console.log("data: ", data);
     request.send(data); // for POST only
-}
+};
 
 // Only calls user provided 'responseHandler'
 // function if response is ready and not an error

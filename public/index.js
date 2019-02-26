@@ -122,11 +122,17 @@ var ModelDiscoveryPlatform = (function (global) {
                 }
             }
 
+            console.log("endpoint in jsonModel: ", endpoint);
+            console.log("sparql in jsonModel: ", query);
+
             // Model
             sendPostRequest(
                 endpoint,
                 query,
                 function (jsonModel) {
+
+                    console.log("jsonModel: ", jsonModel);
+
                     // REMOVE duplicate cellml model and variable name (NOT component name)
                     jsonModel.results.bindings = uniqueifyjsonModel(jsonModel.results.bindings);
                     mainUtils.discoverModels(jsonModel);
@@ -1445,7 +1451,7 @@ var ModelDiscoveryPlatform = (function (global) {
         // Related apical or basolateral model
         var index = 0, ProteinSeq = "", requestData, PID = [],
             baseUrl = "/.api/ebi/clustalo";
-        // baseUrl = "https://www.ebi.ac.ukfcellml/Tools/services/rest/clustalo";
+            // baseUrl = "https://www.ebi.ac.ukfcellml/Tools/services/rest/clustalo";
 
         proteinOrMedPrID(membraneModelID, PID);
         console.log("PID BEFORE: ", PID);
