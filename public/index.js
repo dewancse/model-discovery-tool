@@ -263,7 +263,7 @@ var ModelDiscoveryPlatform = (function (global) {
                                                     proteinList.push(proteinName);
                                                 }
 
-                                                head = ["Model Entity (click a model entity to expand)", "Biological Meaning", "Species", "Gene", "Protein"];
+                                                head = ["Model Entity (click a model entity to expand)", "Biological Meaning", "Species", "Gene", "Protein/System"];
 
                                                 // display this model entity and associated information
                                                 mainUtils.showDiscoverModels(discoverIndex);
