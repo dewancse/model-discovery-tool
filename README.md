@@ -1,6 +1,6 @@
 # Model discovery with the Physiome Model Repository
 
-Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest. This tool is deployed at this address: http://model-discovery-tool.nectar.auckland.ac.nz; as a demonstration of the capabilities described is the paper: https://doi.org/10.1101/498501.
+Model discovery tool is a web-based epithelial transport discovery, exploration and recommendation tool. It allows users to discover, explore and recommend CellML models of interest. This tool is deployed at this address: http://model-discovery-tool.nectar.auckland.ac.nz; as a demonstration of the capabilities described is the paper: https://doi.org/10.1186/s12859-019-2987-y.
 
 ## Installing MDT
 
@@ -9,6 +9,7 @@ This tool makes use of webservices provided by [PMR](https://models.physiomeproj
 If you have Docker and git installed on your machine, then the following should get you up and running:
 ```
 git clone https://github.com/dewancse/model-discovery-tool
+cd model-discovery-tool
 docker build -f Dockerfile -t unique-name/mdt-nginx .
 docker run -p 49160:80 -d unique-name/mdt-nginx
 ```
@@ -96,7 +97,7 @@ We will implement Unit testing and Functional testing to make sure the code is f
 - David Nickerson - @nickerso
 
 ### Licencing
-MIT license!
+MIT license
 
 ### Acknowledgements
-This project is supported by the MedTech Centre of Research Excellence (MedTech CoRE), the Aotearoa Foundation, and the Auckland Bioengineering Institute.
+This project is supported by the MedTech Centre of Research Excellence (MedTech CoRE), the Aotearoa Foundation and the Auckland Bioengineering Institute.
